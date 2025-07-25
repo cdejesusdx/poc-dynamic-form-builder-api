@@ -19,14 +19,14 @@ public class FormService : IFormService
         _mapper = mapper;
     }
 
-    public async Task<FormResponseDto> AddAsync(FormCreateDto dto)
+    public async Task<FormDefinitionDto> AddAsync(FormCreateDto dto)
     {
         var entity = _mapper.Map<FormDefinition>(dto);
         var created = await _formRepository.AddAsync(entity);
-        return _mapper.Map<FormResponseDto>(created);
+        return _mapper.Map<FormDefinitionDto>(created);
     }
 
-    public async Task<FormResponseDto?> UpdateAsync(Guid id, FormUpdateDto dto)
+    public async Task<FormDefinitionDto?> UpdateAsync(Guid id, FormUpdateDto dto)
     {
         var existing = await _formRepository.GetByIdAsync(id);
         if (existing == null)
@@ -34,31 +34,31 @@ public class FormService : IFormService
 
         _mapper.Map(dto, existing);
         await _formRepository.UpdateAsync(id, existing);
-        return _mapper.Map<FormResponseDto>(existing);
+        return _mapper.Map<FormDefinitionDto>(existing);
     }
 
-    public async Task<FormResponseDto?> GetByIdAsync(Guid id)
+    public async Task<FormDefinitionDto?> GetByIdAsync(Guid id)
     {
         var entity = await _formRepository.GetByIdAsync(id);
-        return entity == null ? null : _mapper.Map<FormResponseDto>(entity);
+        return entity == null ? null : _mapper.Map<FormDefinitionDto>(entity);
     }
 
-    public async Task<IEnumerable<FormResponseDto>> GetAllAsync()
+    public async Task<IEnumerable<FormDefinitionDto>> GetAllAsync()
     {
         var all = await _formRepository.GetAllAsync();
-        return _mapper.Map<IEnumerable<FormResponseDto>>(all);
+        return _mapper.Map<IEnumerable<FormDefinitionDto>>(all);
     }
 
-    public async Task<PagedResult<FormResponseDto>> GetPagedAsync(int page, int pageSize)
+    public async Task<PagedResult<FormDefinitionDto>> GetPagedAsync(int page, int pageSize)
     {
         var skip = (page - 1) * pageSize;
         var items = await _formRepository.GetPagedAsync(skip, pageSize);
         var totalCount = await _formRepository.CountAsync();
 
-        return new PagedResult<FormResponseDto>
+        return new PagedResult<FormDefinitionDto>
         {
             TotalCount = totalCount,
-            Items = _mapper.Map<IEnumerable<FormResponseDto>>(items)
+            Items = _mapper.Map<IEnumerable<FormDefinitionDto>>(items)
         };
     }
 }

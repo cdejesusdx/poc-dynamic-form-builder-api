@@ -19,7 +19,7 @@ public class FormsController(IFormService formService) : ControllerBase
     /// <param name="dto">Datos del formulario a crear.</param>
     /// <returns>Formulario creado con su ID asignado.</returns>
     [HttpPost("create")]
-    public async Task<ActionResult<FormResponseDto>> CreateAsync(FormCreateDto dto)
+    public async Task<ActionResult<FormDefinitionDto>> CreateAsync(FormCreateDto dto)
     {
         var result = await _formService.AddAsync(dto);
         //return CreatedAtAction("GetFormById", new { id = result.Id }, result);
@@ -33,7 +33,7 @@ public class FormsController(IFormService formService) : ControllerBase
     /// <param name="dto">Datos actualizados del formulario.</param>
     /// <returns>Formulario actualizado o 404 si no existe.</returns>
     [HttpPut("update/{id}")]
-    public async Task<ActionResult<FormResponseDto>> UpdateAsync(Guid id, FormUpdateDto dto)
+    public async Task<ActionResult<FormDefinitionDto>> UpdateAsync(Guid id, FormUpdateDto dto)
     {
         var result = await _formService.UpdateAsync(id, dto);
         if (result == null)
@@ -47,7 +47,7 @@ public class FormsController(IFormService formService) : ControllerBase
     /// </summary>
     /// <returns>Lista de formularios.</returns>
     [HttpGet("list")]
-    public async Task<ActionResult<IEnumerable<FormResponseDto>>> GetAllAsync()
+    public async Task<ActionResult<IEnumerable<FormDefinitionDto>>> GetAllAsync()
     {
         var result = await _formService.GetAllAsync();
         return Ok(result);
@@ -59,7 +59,7 @@ public class FormsController(IFormService formService) : ControllerBase
     /// <param name="id">ID del formulario.</param>
     /// <returns>Formulario encontrado o 404 si no existe.</returns>
     [HttpGet("details/{id}")]
-    public async Task<ActionResult<FormResponseDto>> GetByIdAsync(Guid id)
+    public async Task<ActionResult<FormDefinitionDto>> GetByIdAsync(Guid id)
     {
         var result = await _formService.GetByIdAsync(id);
         if (result == null)
@@ -75,7 +75,7 @@ public class FormsController(IFormService formService) : ControllerBase
     /// <param name="pageSize">Cantidad de elementos por página (por defecto 10).</param>
     /// <returns>Lista paginada de formularios.</returns>
     [HttpGet("paged")]
-    public async Task<ActionResult<PagedResult<FormResponseDto>>> GetPagedAsync([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+    public async Task<ActionResult<PagedResult<FormDefinitionDto>>> GetPagedAsync([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
     {
         var result = await _formService.GetPagedAsync(page, pageSize);
         return Ok(result);

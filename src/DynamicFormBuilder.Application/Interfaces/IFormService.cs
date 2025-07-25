@@ -5,10 +5,10 @@ namespace DynamicFormBuilder.Application.Interfaces;
 
 public interface IFormService
 {
-    Task<FormResponseDto> AddAsync(FormCreateDto dto);
-    Task<FormResponseDto?> UpdateAsync(Guid id, FormUpdateDto dto);
-    Task<FormResponseDto?> GetByIdAsync(Guid id);
-    Task<IEnumerable<FormResponseDto>> GetAllAsync();
-    Task<PagedResult<FormResponseDto>> GetPagedAsync(int page, int pageSize);
+    Task<FormDefinitionDto> AddAsync(FormCreateDto dto);
+    Task<FormDefinitionDto?> UpdateAsync(Guid id, FormUpdateDto dto);
+    Task<FormDefinitionDto?> GetByIdAsync(Guid id);
+    Task<IEnumerable<FormDefinitionDto>> GetAllAsync();
+    Task<PagedResult<FormDefinitionDto>> GetPagedAsync(int page, int pageSize);
 }
 

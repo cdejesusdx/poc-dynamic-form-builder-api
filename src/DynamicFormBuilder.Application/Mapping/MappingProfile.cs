@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using DynamicFormBuilder.Application.DTOs;
+
 using DynamicFormBuilder.Domain.Entities;
+using DynamicFormBuilder.Application.DTOs;
 
 namespace DynamicFormBuilder.Application.Mapping;
 
@@ -8,11 +9,21 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<FormCreateDto, FormDefinition>();
-        CreateMap<FormUpdateDto, FormDefinition>();
-        CreateMap<FormDefinition, FormResponseDto>();
+        // FormDefinition
+        CreateMap<FormDefinition, FormDefinitionDto>().ReverseMap();
+        CreateMap<FormDefinition, FormCreateDto>().ReverseMap();
+        CreateMap<FormDefinition, FormUpdateDto>().ReverseMap();
 
-        CreateMap<FormComponentDto, FormComponent>().ReverseMap();
-        CreateMap<FormValidationDto, FormValidation>().ReverseMap();
+        // FormComponent
+        CreateMap<FormComponent, FormComponentDto>().ReverseMap();
+
+        // FormValidation
+        CreateMap<FormValidation, FormValidationDto>().ReverseMap();
+
+        // FormComponentData
+        CreateMap<FormComponentData, FormComponentDataDto>().ReverseMap();
+
+        // FormComponentValue
+        CreateMap<FormComponentValue, FormComponentValueDto>().ReverseMap();
     }
 }

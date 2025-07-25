@@ -1,6 +1,6 @@
 ﻿namespace DynamicFormBuilder.Application.DTOs;
 
-public class FormResponseDto
+public class FormDefinitionDto
 {
     public Guid Id { get; set; }
     public string Title { get; set; } = string.Empty;

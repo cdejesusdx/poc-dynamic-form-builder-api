@@ -239,7 +239,15 @@ public static class ApplicationDbContextSeed
                             Type = "select",
                             Label = "Tipo de Reclamo",
                             Placeholder = "",
-                            Validate = new FormValidation { Required = true }
+                            Validate = new FormValidation { Required = true },
+                            Data = new FormComponentData
+                            {
+                                Values = new List<FormComponentValue>
+                                {
+                                    new FormComponentValue { Label = "Opción A0", Value = "opcion_a0" },
+                                    new FormComponentValue { Label = "Opción B0", Value = "opcion_b0" },
+                                }
+                            }
                         },
                         new FormComponent
                         {
@@ -247,7 +255,8 @@ public static class ApplicationDbContextSeed
                             Type = "textarea",
                             Label = "Detalles",
                             Placeholder = "Describe el problema",
-                            Validate = new FormValidation { Required = true }
+                            Validate = new FormValidation { Required = true },
+                            
                         }
                     }
                 }
